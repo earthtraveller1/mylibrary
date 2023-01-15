@@ -7,7 +7,7 @@ if (NOT "${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
     set_target_properties(mylibrary PROPERTIES PUBLIC_HEADER include/mylibrary.hpp)
 endif()
 
-install(TARGETS mylibrary EXPORT mylibraryTargets)
+install(TARGETS mylibrary EXPORT mylibraryTargets LIBRARY)
 
 add_subdirectory(src)
 
