@@ -3,11 +3,8 @@ cmake_minimum_required(VERSION 3.13)
 project(mylibrary)
 
 add_library(mylibrary src/mylibrary.cpp)
-add_library(mylibrary::mylibrary ALIAS mylibrary)
 
-add_library(mylibrary-headers INTERFACE)
-
-target_include_directories(mylibrary-headers INTERFACE)
+target_include_directories(mylibrary PUBLIC "$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>")
 
 set_target_properties(mylibrary PROPERTIES PUBLIC_HEADER include/mylibrary.hpp)
 
