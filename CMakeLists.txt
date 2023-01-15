@@ -4,6 +4,8 @@ project(mylibrary)
 
 add_library(mylibrary src/mylibrary.cpp)
 
+include_directories(include)
+
 install(
     TARGETS mylibrary 
     EXPORT mylibraryTargets 
