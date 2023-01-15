@@ -18,7 +18,7 @@ configure_file(cmake/mylibraryConfig.cmake "${CMAKE_CURRENT_BINARY_DIR}/mylibrar
 
 install(FILES "${CMAKE_BINARY_DIR}/mylibrary/mylibraryConfig.cmake"
               "${CMAKE_BINARY_DIR}/mylibrary/mylibraryConfigVersion.cmake"
-        DESTINATION "lib/cmake/mylibrary")
+        DESTINATION "share/mylibrary/cmake")
 
-install(EXPORT mylibraryTargets FILE mylibraryTargets.cmake EXPORT_LINK_INTERFACE_LIBRARIES DESTINATION "lib/cmake/mylibrary")
+install(EXPORT mylibraryTargets FILE mylibraryTargets.cmake EXPORT_LINK_INTERFACE_LIBRARIES DESTINATION "share/mylibrary/cmake")
 
