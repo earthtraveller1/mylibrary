@@ -7,4 +7,9 @@ set_target_properties(mylibrary PROPERTIES PUBLIC_HEADER include/mylibrary.hpp)
 
 add_subdirectory(src)
 
-install(TARGETS mylibrary LIBRARY PUBLIC_HEADER)
+if (${CMAKE_BUILD_TYPE} STREQUAL Debug)
+    install(TARGETS mylibrary LIBRARY)
+else()
+    install(TARGETS mylibrary LIBRARY PUBLIC_HEADER)
+endif()
+
