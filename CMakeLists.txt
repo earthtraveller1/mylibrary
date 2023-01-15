@@ -4,17 +4,12 @@ project(mylibrary)
 
 add_library(mylibrary src/mylibrary.cpp)
 
-include_directories(include)
+set_target_properties(mylibrary PROPERTIES PUBLIC_HEADER include/mylibrary.hpp)
 
 install(
     TARGETS mylibrary 
     EXPORT mylibraryTargets 
     LIBRARY DESTINATION lib
-)
-
-install(
-    FILES "${CMAKE_SOURCE_DIR}/include/mylibrary.hpp"
-    DESTINATION include
 )
 
 include(CMakePackageConfigHelpers)
