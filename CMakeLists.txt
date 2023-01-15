@@ -2,23 +2,50 @@ cmake_minimum_required(VERSION 3.13)
 
 project(mylibrary)
 
-add_library(mylibrary)
-if (NOT "${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
-    set_target_properties(mylibrary PROPERTIES PUBLIC_HEADER include/mylibrary.hpp)
-endif()
+add_library(mylibrary src/mylibrary.cpp)
 
-install(TARGETS mylibrary EXPORT mylibraryTargets LIBRARY)
+install(
+    TARGETS mylibrary 
+    EXPORT mylibraryTargets 
+    LIBRARY DESTINATION lib
+)
 
-add_subdirectory(src)
+install(
+    FILES "${CMAKE_SOURCE_DIR}/include/mylibrary.hpp"
+    DESTINATION include
+)
 
 include(CMakePackageConfigHelpers)
-write_basic_package_version_file("${CMAKE_CURRENT_BINARY_DIR}/mylibrary/mylibraryConfigVersion.cmake" VERSION 1.0.0 COMPATIBILITY AnyNewerVersion)
-export(EXPORT mylibraryTargets FILE "${CMAKE_CURRENT_BINARY_DIR}/mylibrary/mylibraryTargets.cmake" NAMESPACE Upstream::)
-configure_file(cmake/mylibraryConfig.cmake "${CMAKE_CURRENT_BINARY_DIR}/mylibrary/mylibraryConfig.cmake" COPYONLY)
 
-install(FILES "${CMAKE_BINARY_DIR}/mylibrary/mylibraryConfig.cmake"
-              "${CMAKE_BINARY_DIR}/mylibrary/mylibraryConfigVersion.cmake"
-        DESTINATION "share/mylibrary/cmake")
+write_basic_package_version_file(
+    "${CMAKE_CURRENT_BINARY_DIR}/mylibraryConfigVersion.cmake"
+    VERSION "1.0.0"
+    COMPATIBILITY AnyNewerVersion
+)
 
-install(EXPORT mylibraryTargets FILE mylibraryTargets.cmake EXPORT_LINK_INTERFACE_LIBRARIES DESTINATION "share/mylibrary/cmake")
+export(
+    EXPORT mylibraryTargets
+    FILE "${CMAKE_CURRENT_BINARY_DIR}/mylibraryTargets.cmake"
+)
 
+configure_file(
+    "${CMAKE_SOURCE_DIR}/cmake/mylibraryConfig.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/mylibraryConfig.cmake"
+    COPYONLY
+)
+
+set(MYLIBRARY_PACKAGE_DIR "share/mylibrary/cmake")
+
+install(
+    EXPORT mylibraryTargets
+    FILE mylibraryTargets.cmake
+    DESTINATION ${MYLIBRARY_PACKAGE_DIR}
+)
+
+install(
+    FILES
+        "${CMAKE_CURRENT_BINARY_DIR}/mylibraryConfig.cmake"
+        "${CMAKE_CURRENT_BINARY_DIR}/mylibraryConfigVersion.cmake"
+    DESTINATION
+        ${MYLIBRARY_PACKAGE_DIR}
+)
