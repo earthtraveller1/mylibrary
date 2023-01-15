@@ -26,8 +26,9 @@ write_basic_package_version_file(
 )
 
 export(
-    EXPORT mylibraryTargets
+    TARGETS mylibrary mylibrary-headers
     FILE "${CMAKE_CURRENT_BINARY_DIR}/mylibraryTargets.cmake"
+    NAMESPACE mylibrary::
 )
 
 configure_file(
