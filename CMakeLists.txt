@@ -42,7 +42,7 @@ configure_file(cmake/mylibraryConfig.cmake
     COPYONLY
 )
 
-set(ConfigPackageLocation lib/cmake/mylibrary)
+set(ConfigPackageLocation share/mylibrary)
 
 install(
     EXPORT mylibraryTargets
