@@ -60,3 +60,9 @@ install(
     COMPONENT
         Devel
 )
+
+install(
+    FILE "LICENSE"
+    DESTINATION ${ConfigPackageLocation}
+    RENAME copyright
+    )
