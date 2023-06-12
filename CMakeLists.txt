@@ -62,7 +62,7 @@ install(
 )
 
 install(
-    FILE "LICENSE"
+    FILES "${CMAKE_SOURCE_DIR}/LICENSE"
     DESTINATION ${ConfigPackageLocation}
     RENAME copyright
     )
