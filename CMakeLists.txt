@@ -4,6 +4,8 @@ project(mylibrary VERSION 1.0)
 
 add_library(mylibrary src/mylibrary.cpp)
 
+target_include_directories(mylibrary PUBLIC "$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>" "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>")
+
 include(GNUInstallDirs)
 
 install(
