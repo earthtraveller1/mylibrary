@@ -1,0 +1,11 @@
+{
+    "name": "mylibrary",
+    "version-string": "1.0.0",
+    "description": "A simple library for saying Hello and adding two numbers.",
+    "dependencies": [
+        {
+            "name": "vcpkg-cmake",
+            "host": true
+        }
+    ]
+}
